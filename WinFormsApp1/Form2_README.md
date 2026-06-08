@@ -1,8 +1,5 @@
 # Form2 Module
 
-**Contributed by:** Aisha2mohammed (Student 2)  
-**Email:** hayunadus111@gmail.com
-
 ## Overview
 Form2 is the user registration module of the Voting System. It allows
 new users to create an account that is stored in the `login_db` MySQL
