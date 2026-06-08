@@ -94,14 +94,56 @@ Public Class Form5
                 Dim reader = cmd.ExecuteReader()
 
                 If reader.Read() Then
-                    Label5.Text = reader("fullname").ToString()   ' FULLNAME VALUE
-                    Label6.Text = reader("username").ToString()   ' USERNAME VALUE
+                    Label5.Text = reader("username").ToString()   ' USERNAME VALUE
+                    TextBoxFullName.Text = reader("fullname").ToString()
+                    TextBoxPassword.Text = String.Empty
                 End If
 
             End Using
 
         End Using
 
+    End Sub
+
+    ' ===============================
+    ' 💾 SAVE PROFILE
+    ' ===============================
+    Private Sub ButtonSaveProfile_Click(sender As Object, e As EventArgs) Handles ButtonSaveProfile.Click
+        Dim fullName As String = TextBoxFullName.Text.Trim()
+        Dim password As String = TextBoxPassword.Text.Trim()
+
+        If fullName = String.Empty Then
+            MessageBox.Show("Please enter your full name.")
+            Return
+        End If
+
+        Dim connString As String = "server=localhost;user id=root;password=;database=login_db"
+
+        Using conn As New MySqlConnection(connString)
+            conn.Open()
+
+            Dim query As String
+            Dim cmd As New MySqlCommand()
+            cmd.Connection = conn
+
+            If password = String.Empty Then
+                query = "UPDATE users SET fullname=@fullname WHERE username=@user"
+                cmd.CommandText = query
+                cmd.Parameters.AddWithValue("@fullname", fullName)
+                cmd.Parameters.AddWithValue("@user", loggedUser)
+            Else
+                query = "UPDATE users SET fullname=@fullname, password=@password WHERE username=@user"
+                cmd.CommandText = query
+                cmd.Parameters.AddWithValue("@fullname", fullName)
+                cmd.Parameters.AddWithValue("@password", password)
+                cmd.Parameters.AddWithValue("@user", loggedUser)
+            End If
+
+            cmd.ExecuteNonQuery()
+        End Using
+
+        MessageBox.Show("Profile updated successfully.")
+        LoadProfile()
     End Sub
 
     ' ===============================

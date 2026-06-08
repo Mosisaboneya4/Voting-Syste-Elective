@@ -164,6 +164,10 @@ Public Class Form3
 
                 adapter.Fill(table)
                 DataGridView2.DataSource = table
+
+                If DataGridView2.Columns.Contains("id") Then
+                    DataGridView2.Columns("id").Visible = False
+                End If
             End Using
         Catch ex As Exception
             MessageBox.Show("Error loading candidates: " & ex.Message)
@@ -288,13 +292,56 @@ Public Class Form3
                 Dim reader = cmd.ExecuteReader()
 
                 If reader.Read() Then
-                    Label3.Text = reader("fullname").ToString()
+                    TextBoxFullName.Text = reader("fullname").ToString()
                     Label5.Text = reader("username").ToString()
+                    TextBoxPassword.Text = String.Empty
                 End If
             End Using
 
         Catch ex As Exception
             MessageBox.Show("Error loading profile: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ButtonSaveProfile_Click(sender As Object, e As EventArgs) Handles ButtonSaveProfile.Click
+        Dim fullName As String = TextBoxFullName.Text.Trim()
+        Dim password As String = TextBoxPassword.Text.Trim()
+
+        If fullName = String.Empty Then
+            MessageBox.Show("Full name cannot be empty.")
+            Return
+        End If
+
+        Dim connString As String = "server=localhost;user id=root;password=;database=login_db"
+
+        Try
+            Using conn As New MySqlConnection(connString)
+                conn.Open()
+
+                Dim query As String
+                Dim cmd As New MySqlCommand()
+                cmd.Connection = conn
+
+                If password = String.Empty Then
+                    query = "UPDATE users SET fullname=@fullname WHERE username=@user"
+                    cmd.CommandText = query
+                    cmd.Parameters.AddWithValue("@fullname", fullName)
+                    cmd.Parameters.AddWithValue("@user", loggedUsername)
+                Else
+                    query = "UPDATE users SET fullname=@fullname, password=@password WHERE username=@user"
+                    cmd.CommandText = query
+                    cmd.Parameters.AddWithValue("@fullname", fullName)
+                    cmd.Parameters.AddWithValue("@password", password)
+                    cmd.Parameters.AddWithValue("@user", loggedUsername)
+                End If
+
+                cmd.ExecuteNonQuery()
+            End Using
+
+            MessageBox.Show("Profile updated successfully.")
+            LoadProfile()
+        Catch ex As Exception
+            MessageBox.Show("Error saving profile: " & ex.Message)
         End Try
     End Sub
 
