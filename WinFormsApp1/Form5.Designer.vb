@@ -38,6 +38,10 @@ Partial Class Form5
         Label4 = New Label()
         Label5 = New Label()
         Label6 = New Label()
+        LabelPassword = New Label()
+        TextBoxFullName = New TextBox()
+        TextBoxPassword = New TextBox()
+        ButtonSaveProfile = New Button()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         Panel3.SuspendLayout()
@@ -47,7 +51,7 @@ Partial Class Form5
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.DarkSlateGray
+        Panel1.BackColor = Color.Black
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button1)
@@ -55,44 +59,56 @@ Partial Class Form5
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(200, 450)
+        Panel1.Size = New Size(240, 650)
         Panel1.TabIndex = 0
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(-6, 334)
+        Button3.BackColor = Color.FromArgb(220, 53, 69)
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.ForeColor = Color.White
+        Button3.Location = New Point(20, 262)
         Button3.Name = "Button3"
-        Button3.Size = New Size(206, 75)
+        Button3.Size = New Size(200, 45)
         Button3.TabIndex = 3
         Button3.Text = "Logout"
-        Button3.UseVisualStyleBackColor = True
+        Button3.UseVisualStyleBackColor = False
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(0, 236)
+        Button2.BackColor = Color.FromArgb(42, 42, 42)
+        Button2.FlatStyle = FlatStyle.Flat
+        Button2.FlatAppearance.BorderSize = 0
+        Button2.ForeColor = Color.White
+        Button2.Location = New Point(20, 179)
         Button2.Name = "Button2"
-        Button2.Size = New Size(206, 75)
+        Button2.Size = New Size(200, 45)
         Button2.TabIndex = 2
         Button2.Text = "Profile"
-        Button2.UseVisualStyleBackColor = True
+        Button2.UseVisualStyleBackColor = False
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(0, 128)
+        Button1.BackColor = Color.FromArgb(76, 175, 80)
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.ForeColor = Color.White
+        Button1.Location = New Point(20, 96)
         Button1.Name = "Button1"
-        Button1.Size = New Size(206, 75)
+        Button1.Size = New Size(200, 45)
         Button1.TabIndex = 1
         Button1.Text = "Vote"
-        Button1.UseVisualStyleBackColor = True
+        Button1.UseVisualStyleBackColor = False
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.White
-        Label1.Location = New Point(41, 32)
+        Label1.Location = New Point(20, 22)
         Label1.Name = "Label1"
-        Label1.Size = New Size(121, 20)
+        Label1.Size = New Size(165, 32)
         Label1.TabIndex = 0
         Label1.Text = "User Dashboard"
         ' 
@@ -101,9 +117,9 @@ Partial Class Form5
         Panel2.Controls.Add(Panel4)
         Panel2.Controls.Add(Panel3)
         Panel2.Dock = DockStyle.Fill
-        Panel2.Location = New Point(200, 0)
+        Panel2.Location = New Point(240, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(600, 450)
+        Panel2.Size = New Size(780, 650)
         Panel2.TabIndex = 1
         ' 
         ' Panel3
@@ -133,55 +149,70 @@ Partial Class Form5
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(226, 53)
+        DataGridView1.Location = New Point(300, 60)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(331, 188)
+        DataGridView1.Size = New Size(440, 380)
         DataGridView1.TabIndex = 2
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DataGridView1.RowHeadersVisible = False
+        DataGridView1.AllowUserToResizeColumns = False
+        DataGridView1.AllowUserToResizeRows = False
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(65, 30)
+        Label2.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(40, 30)
         Label2.Name = "Label2"
-        Label2.Size = New Size(70, 20)
+        Label2.Size = New Size(90, 28)
         Label2.TabIndex = 1
         Label2.Text = "Vote List"
         ' 
         ' ListBox1
         ' 
         ListBox1.FormattingEnabled = True
-        ListBox1.Location = New Point(26, 53)
+        ListBox1.Location = New Point(40, 60)
         ListBox1.Name = "ListBox1"
-        ListBox1.Size = New Size(158, 284)
+        ListBox1.Size = New Size(240, 380)
         ListBox1.TabIndex = 0
         ' 
         ' Panel4
         ' 
+        Panel4.Controls.Add(ButtonSaveProfile)
+        Panel4.Controls.Add(TextBoxPassword)
+        Panel4.Controls.Add(LabelPassword)
+        Panel4.Controls.Add(TextBoxFullName)
+        Panel4.Controls.Add(Label3)
         Panel4.Controls.Add(Label6)
         Panel4.Controls.Add(Label5)
         Panel4.Controls.Add(Label4)
-        Panel4.Controls.Add(Label3)
         Panel4.Dock = DockStyle.Fill
         Panel4.Location = New Point(0, 0)
         Panel4.Name = "Panel4"
-        Panel4.Size = New Size(600, 450)
+        Panel4.Size = New Size(780, 650)
         Panel4.TabIndex = 4
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(102, 114)
+        Label3.Location = New Point(90, 130)
         Label3.Name = "Label3"
-        Label3.Size = New Size(72, 20)
+        Label3.Size = New Size(80, 20)
         Label3.TabIndex = 0
-        Label3.Text = "Fullname:"
+        Label3.Text = "Full Name:"
+        ' 
+        ' TextBoxFullName
+        ' 
+        TextBoxFullName.Location = New Point(180, 126)
+        TextBoxFullName.Name = "TextBoxFullName"
+        TextBoxFullName.Size = New Size(360, 27)
+        TextBoxFullName.TabIndex = 4
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(102, 155)
+        Label4.Location = New Point(90, 185)
         Label4.Name = "Label4"
         Label4.Size = New Size(82, 20)
         Label4.TabIndex = 1
@@ -190,7 +221,7 @@ Partial Class Form5
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(214, 114)
+        Label5.Location = New Point(180, 185)
         Label5.Name = "Label5"
         Label5.Size = New Size(0, 20)
         Label5.TabIndex = 2
@@ -198,16 +229,39 @@ Partial Class Form5
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(214, 155)
+        Label6.Location = New Point(90, 240)
         Label6.Name = "Label6"
-        Label6.Size = New Size(0, 20)
+        Label6.Size = New Size(114, 20)
         Label6.TabIndex = 3
+        Label6.Text = "New Password:"
+        ' 
+        ' TextBoxPassword
+        ' 
+        TextBoxPassword.Location = New Point(214, 236)
+        TextBoxPassword.Name = "TextBoxPassword"
+        TextBoxPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
+        TextBoxPassword.Size = New Size(326, 27)
+        TextBoxPassword.TabIndex = 5
+        ' 
+        ' ButtonSaveProfile
+        ' 
+        ButtonSaveProfile.BackColor = Color.Black
+        ButtonSaveProfile.FlatStyle = FlatStyle.Flat
+        ButtonSaveProfile.FlatAppearance.BorderSize = 0
+        ButtonSaveProfile.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ButtonSaveProfile.ForeColor = Color.White
+        ButtonSaveProfile.Location = New Point(180, 290)
+        ButtonSaveProfile.Name = "ButtonSaveProfile"
+        ButtonSaveProfile.Size = New Size(162, 42)
+        ButtonSaveProfile.TabIndex = 6
+        ButtonSaveProfile.Text = "Save Profile"
+        ButtonSaveProfile.UseVisualStyleBackColor = False
         ' 
         ' Form5
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(1020, 650)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.FixedToolWindow
@@ -240,4 +294,8 @@ Partial Class Form5
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents LabelPassword As Label
+    Friend WithEvents TextBoxFullName As TextBox
+    Friend WithEvents TextBoxPassword As TextBox
+    Friend WithEvents ButtonSaveProfile As Button
 End Class
